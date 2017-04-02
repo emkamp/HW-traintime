@@ -1,6 +1,9 @@
 // moment.js
 moment().format();
 
+// cursor
+var iCaretPos = 0;
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyCA2tm3KHnEVfIz7bepElFqDh3-9DJItqw",
@@ -62,12 +65,12 @@ database.on("value", function(snapshot) {
  ** Return value range is 0-oField.value.length.
  ** from http://stackoverflow.com/questions/2897155/get-cursor-position-in-characters-within-a-text-input-field
  */
+
 function doGetCaretPosition(oField) {
 
     // Initialize
-    var iCaretPos = 0;
     var newMargin;
-    var charWidth = 8.95;
+    var charWidth = 8.4;
 
     // IE Support
     if (document.selection) {
@@ -83,7 +86,6 @@ function doGetCaretPosition(oField) {
 
         // The caret position is selection length
         iCaretPos = oSel.text.length;
-        console.log("if iCaretPos = " + iCaretPos);
     }
 
     // Firefox support
@@ -115,8 +117,7 @@ $(document).ready(function() {
         $(this).siblings(".cursor").hide();
     });
 
-    $("input").on('keydown', function() {
-        var key = event.keyCode || event.charCode;
+    $("input").on('keyup', function() {
         doGetCaretPosition(this);
     });
 

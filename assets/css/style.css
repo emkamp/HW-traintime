@@ -127,6 +127,9 @@ button:focus,
 
 
 /* TABLES */
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #242424;
+}
 
 td {
     transition: background-color 1s;
@@ -134,7 +137,7 @@ td {
     color: #18c35c;
 }
 
-th {}
+th { background-color:#111; }
 
 th.name {
     min-width: 200px;
@@ -168,13 +171,12 @@ h2 span.glyphicon {
 .cursor {
     position: absolute;
     display: inline-block;
-    width: 10px;
+    width: 8.4px;
     height: 18px;
     float: left;
     background-color: #0f0;
     margin-top: 35px;
-    /* margin-bottom: -30px; */
-    left: 28px;
+    left: 27px;
     animation: cursor-animation 1s steps(5, start) infinite;
     -webkit-animation: cursor-animation 1s steps(5, start) infinite;
 }
