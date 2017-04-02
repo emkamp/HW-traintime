@@ -95,7 +95,7 @@ function doGetCaretPosition(oField) {
 
     newMargin = (charWidth * iCaretPos) + 28;
 
-    if (newMargin >= 28 && newMargin <= 585) {
+    if (newMargin >= 28 && newMargin <= 498) {
         var marginString = newMargin + "px";
         $(oField).siblings(".cursor").css("left", marginString);
         console.log("left: " + marginString);
