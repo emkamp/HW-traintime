@@ -32,6 +32,8 @@ database.on("child_added", function(childSnapshot, prevChildKey) {
     name = snapshot.name;
     warn = snapshot.warn;
 
+    /* loading ---------------- */
+
     if (warn === undefined) {
         warn = "";
     } else {}
@@ -42,23 +44,35 @@ database.on("child_added", function(childSnapshot, prevChildKey) {
         name = '<span class="glyphicon glyphicon-flash"></span> Mojave Express';
     } else {}
 
-    newRow = $("<tr id='x'><td class='name'>" + name + "</td><td class='dest'>" + dest + "</td><td class='freq'>" + freq + "</td><td class='arv'>" + arv + "</td><td class='wait'>" + wait + "</td><td class='warn'>" + warn + "</tr>");
+    newRow = $("<tr><td class='name'>" + name + "</td><td class='dest'>" + dest + "</td><td class='freq'>" + freq + "</td><td class='arv'>" + arv + "</td><td class='wait'>" + wait + "</td><td class='warn'>" + warn + "</tr>");
 
     $("#schedule tbody").append(newRow);
+
+    /* updating ---------------- */
+
+    console.log("SOMETHING CHANGED!");
+    //console.log(trainRef);
+
+    /* sample for class change effect on update -- 
+        $("#train1 td.dep").addClass("changed");
+        $("#train1 td.dep").html(trainRef.dep);
+        setTimeout(function() {
+            $("#train1 td.dep").removeClass("changed");
+        }, 500);
+        -- */
 });
 
-/*
-//UPDATE PAGE ON DATA CHANGE
-database.on("value", function(snapshot) {
-    var thisTrain = "train1";
-    var trainRef = snapshot.val().thisTrain;
-    $("#train1 td.dep").addClass("changed");
-    $("#train1 td.dep").html(trainRef.dep);
-    setTimeout(function() {
-        $("#train1 td.dep").removeClass("changed");
-    }, 500);
-});
-*/
+function newTrainItem(){
+    console.log("newTrainItem");
+    // grab data from fields to variables, put variables into object, push object to firebase.
+}
+
+
+/* ================================================================================================================== */
+/* CURSOR STUFF ==================================================================================================== */
+/* ================================================================================================================ */
+
+
 
 /*
  ** Returns the caret (cursor) position of the specified text field.
@@ -124,4 +138,6 @@ $(document).ready(function() {
     $("input").mouseup(function() {
         doGetCaretPosition(this);
     });
+
+    $("#btn-add").on("click", newTrainEntry());
 });
