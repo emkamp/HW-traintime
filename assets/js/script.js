@@ -22,8 +22,18 @@ var warn = "";
 var arv = "";
 var wait = "";
 
-// GET DATA ONCE THE FIRST TIME
+var recentTrain;
+
+// GET DATA ONCE THE FIRST TIME AND EVERY TIME A NEW TRAIN IS ADDED
 database.on("child_added", function(childSnapshot, prevChildKey) {
+    console.log("prevChildKey: " + prevChildKey);
+
+    if (prevChildKey) {
+        recentTrain = parseInt(prevChildKey.slice(5)) + 1;
+        console.log("recentTrain: " + recentTrain);
+        // THIS ^ WILL SHOW PREV, NOT CURRENT, SO CHOP THE STRING TO GET THE #, convert to integer, and add one.
+    }
+
     var snapshot = childSnapshot.val();
     //for #items in object, build 1 row for each
     dep = snapshot.dep;
@@ -52,27 +62,36 @@ database.on("child_added", function(childSnapshot, prevChildKey) {
 
     console.log("SOMETHING CHANGED!");
     //console.log(trainRef);
-
-    /* sample for class change effect on update -- 
-        $("#train1 td.dep").addClass("changed");
-        $("#train1 td.dep").html(trainRef.dep);
-        setTimeout(function() {
-            $("#train1 td.dep").removeClass("changed");
-        }, 500);
-        -- */
 });
 
-function newTrainItem(){
+function newTrainEntry(event) {
     console.log("newTrainItem");
+    console.log(event);
     // grab data from fields to variables, put variables into object, push object to firebase.
+
+    var newTrainNumber = recentTrain + 1; //add one to recentTrain
+
+    var newTrainName = $("#name").val();
+    var newTrainDest = $("#dest").val();
+    var newTrainFirstDep = $("#first-dep").val();
+    var newTrainFreq = $("#frequency").val();
+    var newTrainWarn = $("#warn").val();
+
+    console.log("newTrainName: " + newTrainName);
+
+    firebase.database().ref('train' + newTrainNumber).set({
+        dep: newTrainFirstDep,
+        dest: newTrainDest,
+        freq: newTrainFreq,
+        name: newTrainName,
+        warn: newTrainWarn,
+    });
 }
 
 
 /* ================================================================================================================== */
 /* CURSOR STUFF ==================================================================================================== */
 /* ================================================================================================================ */
-
-
 
 /*
  ** Returns the caret (cursor) position of the specified text field.
@@ -139,5 +158,5 @@ $(document).ready(function() {
         doGetCaretPosition(this);
     });
 
-    $("#btn-add").on("click", newTrainEntry());
+    $("#btn-add").on("click", newTrainEntry);
 });
