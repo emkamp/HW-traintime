@@ -1,19 +1,19 @@
 {
-  "name": "traintime-empulse",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/emkamp/HW-traintime.git"
-  },
-  "author": "emkamp",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/emkamp/HW-traintime/issues"
-  },
-  "homepage": "https://github.com/emkamp/HW-traintime#readme"
+    "name": "traintime-empulse",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.html",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emkamp/HW-traintime.git"
+    },
+    "author": "emkamp",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/emkamp/HW-traintime/issues"
+    },
+    "homepage": "https://github.com/emkamp/HW-traintime#readme"
 }
